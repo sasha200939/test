@@ -3,7 +3,7 @@ local players = game:GetService("Players")
 local runservice = game:GetService("RunService")
 local TweenService = game:GetService("TweenService") 
 
-local LocalPlayer = players:FindFirstChild(nickname)
+local LocalPlayer = players.LocalPlayer
 local Lp = LocalPlayer
 local Character = LocalPlayer.Character
 local Humanoid = Character.Humanoid
@@ -37,7 +37,7 @@ function smoothtpTo(part, pos)
 	local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(pos)}) 
 	tween:Play()
     tween.Completed:Wait()
-    return true
+    return
 end
 
 
@@ -48,6 +48,5 @@ function nex(ss)
     if enn == true then return end -- debug
 
     spawn(smoothtpTo,doors[cur])
-    return
 end
 nex(1)
