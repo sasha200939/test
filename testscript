@@ -1,0 +1,53 @@
+local players = game:GetService("Players")
+local runservice = game:GetService("RunService")
+local TweenService = game:GetService("TweenService") 
+
+local LocalPlayer = players:FindFirstChild(nickname)
+local Lp = LocalPlayer
+local Character = LocalPlayer.Character
+local Humanoid = Character.Humanoid
+local HumanoidRootPart = Character.HumanoidRootPart
+local cur = 1
+local enn = false
+
+local doors = {
+    workspace.Islands.Spooksville.Building:GetChildren()[38].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[34].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[5].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[2].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[26].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[28].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[42].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[51].eventDoor.Frame
+    
+}
+
+function smoothtpTo(part, pos)
+	if pos == nil then 
+		local tweenInfo = TweenInfo.new (8, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+		local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(part.Position)}) 
+		tween:Play()
+        tween.Completed:Wait()
+        doors[cur].ProximityPrompt:InputHoldBegin()
+        wait(6)
+        spawn(nex)
+        return true end
+		 end
+	local tweenInfo = TweenInfo.new (8, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+	local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(pos)}) 
+	tween:Play()
+    tween.Completed:Wait()
+    return true
+end
+
+
+
+function nex(ss)
+    if cur == 9 then cur = 1 end
+    if cur == 5 then enn = true return end -- debug
+    if enn == true then return end -- debug
+
+    spawn(smoothtpTo,doors[cur])
+    return
+end
+nex()
