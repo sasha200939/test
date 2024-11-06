@@ -33,7 +33,6 @@ function smoothtpTo(part, pos)
         wait(6)
         spawn(nex)
         return true end
-		 end
 	local tweenInfo = TweenInfo.new (8, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 	local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(pos)}) 
 	tween:Play()
