@@ -98,7 +98,7 @@ function smoothtpTo(part, pos)
         	tween.Completed:Wait()
             if enn == true then return end
         	doors[cur].ProximityPrompt:InputHoldBegin()
-        	wait(3)
+        	wait(4.5)
             cur += 1
         	spawn(nex)
 
