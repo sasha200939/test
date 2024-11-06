@@ -12,37 +12,119 @@ local cur = 1
 local enn = false
 
 local doors = {
-    workspace.Islands.Spooksville.Building:GetChildren()[38].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[34].eventDoor.Frame,
-    workspace.Islands.Spooksville.Building:GetChildren()[5].eventDoor.Frame,
-    workspace.Islands.Spooksville.Building:GetChildren()[2].eventDoor.Frame,
-    workspace.Islands.Spooksville.Building:GetChildren()[26].eventDoor.Frame,
-    workspace.Islands.Spooksville.Building:GetChildren()[28].eventDoor.Frame,
-    workspace.Islands.Spooksville.Building:GetChildren()[42].eventDoor.Frame,
-    workspace.Islands.Spooksville.Building:GetChildren()[51].eventDoor.Frame
+    workspace.Islands.Spooksville.Building:GetChildren()[35].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[55].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[41].eventDoor.Frame,
+    workspace.Islands.Spooksville.Building:GetChildren()[57].eventDoor.Frame,
     
 }
 
+
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local TextButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+
+--Properties:
+
+ScreenGui.Name = "~~~~~~~"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Enabled = true
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+TextButton.Parent = ScreenGui
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.713268638, 0, 0.0172117036, 0)
+TextButton.Size = UDim2.new(0, 185, 0, 71)
+TextButton.Font = Enum.Font.Unknown
+TextButton.LineHeight = 0.330
+TextButton.Text = "Stop"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 13.000
+TextButton.TextWrapped = true
+
+UICorner.Parent = TextButton
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(92, 171, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(98, 209, 124))}
+UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.43, 0.39), NumberSequenceKeypoint.new(1.00, 0.00)}
+UIGradient.Parent = TextButton
+
+local SSSSSSSSSSSSSSSS = Instance.new("Sound")
+SSSSSSSSSSSSSSSS.Name = "SSSSSSSSSSSSSSSS"
+SSSSSSSSSSSSSSSS.SoundId = "rbxassetid://135668006790390"
+SSSSSSSSSSSSSSSS.Parent = TextButton
+
+
+-- Scripts:
+
+local function CCSRF_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		enn = true
+		script.Parent.SSSSSSSSSSSSSSSS.Parent = workspace
+		workspace.SSSSSSSSSSSSSSSS:Play()
+		game:GetService("Debris"):AddItem(workspace.SSSSSSSSSSSSSSSS, 10)
+		script.Parent.Parent:Destroy()
+	end)
+end
+coroutine.wrap(CCSRF_fake_script)()
+
+
+
+
 function smoothtpTo(part, pos)
-	if pos == nil then 
-		local tweenInfo = TweenInfo.new (8, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
-		local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(part.Position)}) 
+    print("got")
+        if enn == true then return end
+        print(doors[cur].Name)
+		local tweenInfo = TweenInfo.new (2, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+		local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(HumanoidRootPart.Position + Vector3.new(0,40,0))}) 
 		tween:Play()
         	tween.Completed:Wait()
+            if enn == true then return end
+
+            local tweenInfo = TweenInfo.new (2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+		local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(doors[cur].Position)}) 
+		tween:Play()
+        	tween.Completed:Wait()
+            if enn == true then return end
         	doors[cur].ProximityPrompt:InputHoldBegin()
-        	wait(6)
+        	wait(3)
+            cur += 1
         	spawn(nex)
-	end
-    return
+
 end
 
-
+spawn(function()
+    while wait(1) do
+     if LocalPlayer.PlayerGui.Modes.Frame.GeneralBars.Buso.Left.Bar.UIGradient.Rotation == 360 then game:GetService("ReplicatedStorage").Events.Haki:FireServer("Buso") end
+    end
+end)
 
 function nex(ss)
-    if cur == 9 then cur = 1 end
-    if cur == 5 then enn = true return end -- debug
+    if cur == 6 then cur = 1 end
     if enn == true then return end -- debug
-
-    spawn(smoothtpTo,doors[cur])
+    spawn(smoothtpTo)
 end
-nex(1)
+spawn(nex)
+print("done")
+
+
+
+spawn(function()
+ while wait() do
+	game:GetService("Players").LocalPlayer.Idled:connect(function()
+		game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+	end)
+end
+end)
+
