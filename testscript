@@ -1,3 +1,4 @@
+print("Executing...")
 local players = game:GetService("Players")
 local runservice = game:GetService("RunService")
 local TweenService = game:GetService("TweenService") 
