@@ -32,7 +32,7 @@ function smoothtpTo(part, pos)
         doors[cur].ProximityPrompt:InputHoldBegin()
         wait(6)
         spawn(nex)
-        return true end
+        return true
 	local tweenInfo = TweenInfo.new (8, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 	local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(pos)}) 
 	tween:Play()
