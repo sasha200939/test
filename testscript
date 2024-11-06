@@ -28,15 +28,11 @@ function smoothtpTo(part, pos)
 		local tweenInfo = TweenInfo.new (8, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 		local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(part.Position)}) 
 		tween:Play()
-        tween.Completed:Wait()
-        doors[cur].ProximityPrompt:InputHoldBegin()
-        wait(6)
-        spawn(nex)
-        return end
-	local tweenInfo = TweenInfo.new (8, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
-	local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(pos)}) 
-	tween:Play()
-    tween.Completed:Wait()
+        	tween.Completed:Wait()
+        	doors[cur].ProximityPrompt:InputHoldBegin()
+        	wait(6)
+        	spawn(nex)
+	end
     return
 end
 
