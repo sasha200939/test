@@ -20,7 +20,7 @@ local doorss = {
 
 function createnewbox(num)
     print("num: "..num)
-    if num > 2 then
+    if num > 1 then
 
             local oop = Instance.new("Highlight", doorss[num])
     local box = doorss[num]:Clone()
