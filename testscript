@@ -10,14 +10,54 @@ local Humanoid = Character.Humanoid
 local HumanoidRootPart = Character.HumanoidRootPart
 local cur = 1
 local enn = false
-
-local doors = {
+local doorss = {
     workspace.Islands.Spooksville.Building:GetChildren()[35].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[55].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[41].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[57].eventDoor.Frame,
     
 }
+
+function createnewbox(num)
+    print("num: "..num)
+    if num > 2 then
+
+            local oop = Instance.new("Highlight", doorss[num])
+    local box = doorss[num]:Clone()
+    box.Parent = doorss[num]
+    box.Position += Vector3.new(-5,0,0)
+    box.Name = "box"
+
+    local oop = Instance.new("Highlight", box)
+ 
+
+    return end    
+    local oop = Instance.new("Highlight", doorss[num])
+    local box = doorss[num]:Clone()
+    box.Parent = doorss[num]
+    box.Position += Vector3.new(0,0,-5)
+    box.Name = "box"
+
+    local oop = Instance.new("Highlight", box)
+
+end
+-- doors[1].Highlight:Destroy()
+
+for i,v in pairs(doorss) do
+    print("i: "..i)
+    createnewbox(i)
+end
+
+print("success!")
+
+local doors = {
+    workspace.Islands.Spooksville.Building:GetChildren()[35].eventDoor.Frame.box,
+    workspace.Islands.Spooksville.Building:GetChildren()[55].eventDoor.Frame.box,
+    workspace.Islands.Spooksville.Building:GetChildren()[41].eventDoor.Frame.box,
+    workspace.Islands.Spooksville.Building:GetChildren()[57].eventDoor.Frame.box,
+    
+}
+
 
 
 -- Gui to Lua
@@ -96,9 +136,9 @@ function smoothtpTo(part, pos)
 		tween:Play()
         	tween.Completed:Wait()
             if enn == true then return end
-        	doors[cur].ProximityPrompt:InputHoldBegin()
+        	doorss[cur].ProximityPrompt:InputHoldBegin()
             wait(0.5)
-            doors[cur].ProximityPrompt:InputHoldBegin()
+            doorss[cur].ProximityPrompt:InputHoldBegin()
         	wait(4.5)
             cur += 1
         	spawn(nex)
