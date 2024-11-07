@@ -10,54 +10,14 @@ local Humanoid = Character.Humanoid
 local HumanoidRootPart = Character.HumanoidRootPart
 local cur = 1
 local enn = false
-local doorss = {
-   -- workspace.Islands.Spooksville.Building:GetChildren()[35].eventDoor.Frame,
+
+local doors = {
+    workspace.Islands.Spooksville.Building:GetChildren()[35].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[55].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[41].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[57].eventDoor.Frame,
     
 }
-
-function createnewbox(num)
-    print("num: "..num)
-    if num > 1 then
-
-            local oop = Instance.new("Highlight", doorss[num])
-    local box = doorss[num]:Clone()
-    box.Parent = doorss[num]
-    box.Position += Vector3.new(-5,0,0)
-    box.Name = "box"
-
-    local oop = Instance.new("Highlight", box)
- 	box.ProximityPrompt:Destroy()
-
-    return end    
-    local oop = Instance.new("Highlight", doorss[num])
-    local box = doorss[num]:Clone()
-    box.Parent = doorss[num]
-    box.Position += Vector3.new(0,0,-5)
-    box.Name = "box"
-	box.ProximityPrompt:Destroy()
-    local oop = Instance.new("Highlight", box)
-
-end
--- doors[1].Highlight:Destroy()
-
-for i,v in pairs(doorss) do
-    print("i: "..i)
-    createnewbox(i)
-end
-
-print("success!")
-
-local doors = {
- --   workspace.Islands.Spooksville.Building:GetChildren()[35].eventDoor.Frame.box,
-    workspace.Islands.Spooksville.Building:GetChildren()[55].eventDoor.Frame.box,
-    workspace.Islands.Spooksville.Building:GetChildren()[41].eventDoor.Frame.box,
-    workspace.Islands.Spooksville.Building:GetChildren()[57].eventDoor.Frame.box,
-    
-}
-
 
 
 -- Gui to Lua
@@ -135,13 +95,10 @@ function smoothtpTo(part, pos)
 		local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(doors[cur].Position + Vector3.new(0,0,0))}) 
 		tween:Play()
         	tween.Completed:Wait()
-		if LocalPlayer.Backpack:FindFirstChild("Candy Corn Basket") ~= nil then
-			LocalPlayer.Backpack:FindFirstChild("Candy Corn Basket").Parent = LocalPlayer.Character
-		end
             if enn == true then return end
-        	doorss[cur].ProximityPrompt:InputHoldBegin()
+        	doors[cur].ProximityPrompt:InputHoldBegin()
             wait(0.5)
-            doorss[cur].ProximityPrompt:InputHoldBegin()
+            doors[cur].ProximityPrompt:InputHoldBegin()
         	wait(4.5)
             cur += 1
         	spawn(nex)
@@ -155,7 +112,7 @@ spawn(function()
 end)
 
 function nex(ss)
-    if cur == 4 then cur = 1 end
+    if cur == 5 then cur = 1 end
     if enn == true then return end -- debug
     spawn(smoothtpTo)
 end
@@ -171,4 +128,3 @@ spawn(function()
 	end)
 end
 end)
-
