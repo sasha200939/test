@@ -135,6 +135,9 @@ function smoothtpTo(part, pos)
 		local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(doors[cur].Position + Vector3.new(0,0,0))}) 
 		tween:Play()
         	tween.Completed:Wait()
+		if LocalPlayer.Backpack:FindFirstChild("Candy Corn Basket") ~= nil then
+			LocalPlayer.Backpack:FindFirstChild("Candy Corn Basket").Parent = LocalPlayer.Character
+		end
             if enn == true then return end
         	doorss[cur].ProximityPrompt:InputHoldBegin()
             wait(0.5)
