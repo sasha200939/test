@@ -12,7 +12,6 @@ local cur = 1
 local enn = false
 
 local doors = {
-    workspace.Islands.Spooksville.Building:GetChildren()[34].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[35].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[55].eventDoor.Frame,
     workspace.Islands.Spooksville.Building:GetChildren()[41].eventDoor.Frame,
@@ -93,11 +92,13 @@ function smoothtpTo(part, pos)
             if enn == true then return end
 
             local tweenInfo = TweenInfo.new (2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
-		local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(doors[cur].Position)}) 
+		local tween = TweenService:Create(HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(doors[cur].Position + Vector3.new(0,0,0))}) 
 		tween:Play()
         	tween.Completed:Wait()
             if enn == true then return end
         	doors[cur].ProximityPrompt:InputHoldBegin()
+            wait(0.5)
+            doors[cur].ProximityPrompt:InputHoldBegin()
         	wait(4.5)
             cur += 1
         	spawn(nex)
@@ -111,7 +112,7 @@ spawn(function()
 end)
 
 function nex(ss)
-    if cur == 6 then cur = 1 end
+    if cur == 5 then cur = 1 end
     if enn == true then return end -- debug
     spawn(smoothtpTo)
 end
